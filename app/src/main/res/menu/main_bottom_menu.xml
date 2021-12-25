@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/mainSearchItem"
+        android:icon="@drawable/ic_search"
+        android:title="@string/mainSearchTitle" />
+
+    <!--<item
+        android:id="@+id/mainReminderItem"
+        android:icon="@android:drawable/ic_lock_idle_alarm"
+        android:title="@string/mainReminderTitle" />-->
+
+    <item
+        android:id="@+id/mainFavoriteItem"
+        android:icon="@drawable/ic_favorite"
+        android:title="@string/mainFavoriteTitle" />
+</menu>
