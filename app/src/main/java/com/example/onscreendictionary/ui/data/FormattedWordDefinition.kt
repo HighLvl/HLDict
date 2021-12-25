@@ -67,7 +67,7 @@ fun WordDefinition.toFormatted(
         hyponymsVisibility = selectGoneIfEmpty(hypernyms),
         etymology = etymology,
         etymologyVisibility = selectGoneIfEmpty(etymology),
-        phras = phras?.map { "\"$it\"" }?.joinToString("\n").orEmpty(),
+        phras = phras?.filter { it.isNotBlank() }?.joinToString("\n") { "\"$it\"" }.orEmpty(),
         phrasVisibility = selectGoneIfEmpty(phras),
         ipa = ipa,
         ipaVisibility = selectGoneIfEmpty(ipa)

@@ -27,4 +27,8 @@ class SearchView @JvmOverloads constructor(
         binding.queryTextView.text = query
     }
 
+    fun setHint(hint: String) {
+        binding.queryTextView.hint = hint
+    }
+
 }

@@ -3,6 +3,7 @@ package com.example.onscreendictionary.ui.word_list
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
+import com.example.onscreendictionary.R
 import com.example.onscreendictionary.databinding.WordListFragmentBinding
 import com.example.onscreendictionary.ui.base.BaseFragment
 import com.example.onscreendictionary.ui.view.setRetryError
@@ -16,6 +17,10 @@ class WordListFragment(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(viewBinding) {
         super.onViewCreated(view, savedInstanceState)
+
+        if (args!!.favoriteOnly) {
+            viewBinding.searchView.setHint(getString(R.string.wordListSearchHintFavorite))
+        }
 
         val recyclerViewAdapter = WordListRecyclerViewAdapter(
             viewModel::wordDetails,

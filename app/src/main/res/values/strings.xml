@@ -25,4 +25,5 @@
     <string name="wordDetailsEtymologyTitle">этимология:</string>
     <string name="wordDetailsPhrasTitle">фразеологизмы и устойчивые сочетания:</string>
     <string name="wordDetailsIpaTitle">МФА:</string>
+    <string name="wordListSearchHintFavorite">Поиск в избранном</string>
 </resources>
