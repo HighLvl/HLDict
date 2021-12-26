@@ -2,7 +2,12 @@ package com.example.onscreendictionary.ui.main
 
 import android.os.Bundle
 import android.view.View
+import android.view.WindowInsetsAnimation
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsAnimationCompat
+import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
+import com.example.onscreendictionary.App
 import com.example.onscreendictionary.R
 import com.example.onscreendictionary.databinding.MainFragmentBinding
 import com.example.onscreendictionary.di.app.AppComponent
@@ -39,11 +44,6 @@ class MainFragment(
             }
         }
 
-        root.setOnApplyWindowInsetsListener { _, windowInsets ->
-            bottomNavigationView.isVisible = windowInsets.systemWindowInsetBottom == 0
-            windowInsets
-        }
-
         bottomNavigationView.setOnItemSelectedListener { item ->
             val section = MainBottomSection.getByMenuItemId(item.itemId) ?: MainBottomSection.Search
             viewModel.onBottomSectionClick(section)
@@ -54,8 +54,12 @@ class MainFragment(
             if (bottomNavigationView.selectedItemId != section.menuItemId) {
                 bottomNavigationView.selectedItemId = section.menuItemId
             }
+            bottomNavigationView.isVisible =
+                !(route is MainRoute.Search || route is MainRoute.FavoriteSearch)
+
             navigator.setRoute(route)
         }
+
     }
 
     fun search(query: String) {

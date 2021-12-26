@@ -31,7 +31,7 @@ class WordListFragment(
         searchView.setOnSearchClickListener {
             viewModel.search()
         }
-        randomWordButton.isVisible = !args!!.favoriteOnly
+        randomWordButton.isVisible = !args.favoriteOnly
         randomWordButton.setOnClickListener {
             viewModel.randomWord()
         }
