@@ -1,9 +1,9 @@
 package com.example.onscreendictionary.ui.main
 
-import androidx.lifecycle.MutableLiveData
 import com.example.onscreendictionary.di.main.MainScope
 import com.example.onscreendictionary.domain.data.WordDefinitionId
 import com.example.onscreendictionary.ui.base.BaseViewModel
+import com.example.onscreendictionary.ui.base.SingleLiveEvent
 import com.example.onscreendictionary.ui.search.SearchCoordinator
 import com.example.onscreendictionary.ui.word_details.WordDetailsCoordinator
 import com.example.onscreendictionary.ui.word_list.WordListCoordinator
@@ -19,8 +19,8 @@ class MainViewModel @Inject constructor(
         //MainBottomSection.Reminder to mutableListOf(MainRoute.Reminder),
         MainBottomSection.Favorites to mutableListOf(MainRoute.FavoriteList())
     )
-    val section: MutableLiveData<Pair<MainBottomSection, MainRoute>> =
-        MutableLiveData(MainBottomSection.Search to MainRoute.WordList())
+    val section: SingleLiveEvent<Pair<MainBottomSection, MainRoute>> =
+        SingleLiveEvent(MainBottomSection.Search to MainRoute.WordList())
 
     fun search(query: String) {
         addRoute(MainBottomSection.Search, MainRoute.Search(query))

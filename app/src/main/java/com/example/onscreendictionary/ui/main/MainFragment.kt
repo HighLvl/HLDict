@@ -2,12 +2,7 @@ package com.example.onscreendictionary.ui.main
 
 import android.os.Bundle
 import android.view.View
-import android.view.WindowInsetsAnimation
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsAnimationCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
-import com.example.onscreendictionary.App
 import com.example.onscreendictionary.R
 import com.example.onscreendictionary.databinding.MainFragmentBinding
 import com.example.onscreendictionary.di.app.AppComponent
@@ -17,8 +12,9 @@ import com.example.onscreendictionary.ui.base.BaseFragment
 import kotlin.reflect.KClass
 
 class MainFragment(
-    override val args: MainArgs? = null
+    args: MainArgs? = null
 ) : BaseFragment() {
+    override val args by args(args)
     override val viewBinding: MainFragmentBinding by impl()
     override val viewModel: MainViewModel by impl()
     private val navigator by lazy(LazyThreadSafetyMode.NONE) {
@@ -26,7 +22,7 @@ class MainFragment(
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(null)
+        super.onCreate(savedInstanceState)
         viewModel.onCreate(savedInstanceState?.getParcelable("MainInstanceState"))
     }
 

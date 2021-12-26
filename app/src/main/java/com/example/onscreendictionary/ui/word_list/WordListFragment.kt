@@ -10,15 +10,16 @@ import com.example.onscreendictionary.ui.view.setRetryError
 
 
 class WordListFragment(
-    override val args: WordListArgs? = null
+    args: WordListArgs? = null
 ) : BaseFragment() {
+    override val args by args(args)
     override val viewBinding: WordListFragmentBinding by impl()
     override val viewModel: WordListViewModel by impl()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) = with(viewBinding) {
         super.onViewCreated(view, savedInstanceState)
 
-        if (args!!.favoriteOnly) {
+        if (args.favoriteOnly) {
             viewBinding.searchView.setHint(getString(R.string.wordListSearchHintFavorite))
         }
 

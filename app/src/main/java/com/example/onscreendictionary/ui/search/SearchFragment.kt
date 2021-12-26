@@ -13,8 +13,9 @@ import com.example.onscreendictionary.ui.view.setRetryError
 import com.example.onscreendictionary.ui.view.showKeyboard
 
 class SearchFragment(
-    override val args: SearchArgs? = null
+    args: SearchArgs? = null
 ) : BaseFragment() {
+    override val args by args(args)
     override val viewModel: SearchViewModel by impl()
     override val viewBinding: SearchFragmentBinding by impl()
 

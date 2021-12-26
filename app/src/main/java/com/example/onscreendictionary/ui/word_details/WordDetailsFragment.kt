@@ -6,13 +6,15 @@ import androidx.core.view.isVisible
 import com.example.onscreendictionary.R
 import com.example.onscreendictionary.databinding.WordDetailsFragmentBinding
 import com.example.onscreendictionary.domain.data.WordDefinitionId
+import com.example.onscreendictionary.ui.base.Args
 import com.example.onscreendictionary.ui.base.BaseFragment
 import com.example.onscreendictionary.ui.view.localizedMessageErrorMapper
 import com.example.onscreendictionary.ui.view.setRetryError
 
 class WordDetailsFragment(
-    override val args: WordDefinitionId? = null
+    args: WordDefinitionId? = null
 ) : BaseFragment() {
+    override val args by args(args)
     override val viewBinding: WordDetailsFragmentBinding by impl()
     override val viewModel: WordDetailsViewModel by impl()
 

@@ -30,10 +30,6 @@ abstract class BaseFragment : Fragment(),
     var _args: Args? = null
     open val args: Args? = null
 
-    init {
-        saveArgs()
-    }
-
     private var viewBindingKClass: KClass<*>? = null
     private var _viewBinding: ViewBinding? = null
     abstract val viewBinding: ViewBinding? // optional for custom no viewBinding fragments
@@ -55,6 +51,13 @@ abstract class BaseFragment : Fragment(),
         return this as PropertyDelegateProvider<Any, ReadOnlyProperty<Any, T>>
     }
 
+    @Suppress("UNCHECKED_CAST")
+    protected fun <T: Args> args(value: T?): PropertyDelegateProvider<Any, ReadOnlyProperty<Any, T>> {
+        this._args = value
+        saveOrRestoreArgs()
+        return this as PropertyDelegateProvider<Any, ReadOnlyProperty<Any, T>>
+    }
+
     override fun provideDelegate(
         thisRef: Any,
         property: KProperty<*>
@@ -70,6 +73,7 @@ abstract class BaseFragment : Fragment(),
         return when (property.name) {
             "viewBinding" -> _viewBinding
             "viewModel" -> _viewModel
+            "args" -> _args
             else -> IllegalArgumentException("Property ${property.name} is not supported by ${this::class.simpleName}.impl delegate")
         }
     }
@@ -77,16 +81,15 @@ abstract class BaseFragment : Fragment(),
     override fun onAttach(context: Context) {
         super.onAttach(context)
 
-        saveArgs()
+        saveOrRestoreArgs()
         _viewModel = onProvideViewModel()
         viewModel?.attach()
     }
 
-    private fun saveArgs() {
-        val args = args
+    private fun saveOrRestoreArgs() {
+        val args = _args
         var arguments = arguments
         if (args != null) {
-            _args = args
             if (arguments == null) {
                 arguments = Bundle()
                 this.arguments = arguments
