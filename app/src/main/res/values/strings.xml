@@ -1,0 +1,29 @@
+<resources>
+    <string name="appName">OnScreenDictionary</string>
+    <string name="appErrorNetworkTitle">Проверьте подключение к интернету</string>
+    <string name="appErrorServerTitle">Ошибка сервера</string>
+    <string name="appErrorDefaultTitle">Произошла ошибка</string>
+
+    <string name="searchViewQueryHint">Поиск…</string>
+
+    <string name="mainSearchTitle">Поиск</string>
+    <string name="mainReminderTitle">Напоминания</string>
+    <string name="mainFavoriteTitle">Избранное</string>
+
+    <string name="wordListItemSynonymsTitle">син.:</string>
+    <string name="wordListItemAntonymsTitle">ант.:</string>
+    <string name="wordListItemSyllables">%1$s %2$s</string>
+
+    <string name="wordDetailsNotFullError">Не удалось загрузить полную детальную информацию</string>
+    <string name="wordDetailsPartOfSpeechTitle">часть речи:\u0020</string>
+    <string name="wordDetailsLangTitle">язык:\u0020</string>
+    <string name="wordDetailsExamplesTitle">примеры употребления:</string>
+    <string name="wordDetailsSynonymsTitle">синонимы:</string>
+    <string name="wordDetailsAntonymsTitle">антонимы:</string>
+    <string name="wordDetailsHyponymsTitle">гипонимы:</string>
+    <string name="wordDetailsHypernymsTitle">гиперонимы:</string>
+    <string name="wordDetailsEtymologyTitle">этимология:</string>
+    <string name="wordDetailsPhrasTitle">фразеологизмы и устойчивые сочетания:</string>
+    <string name="wordDetailsIpaTitle">МФА:</string>
+    <string name="wordListSearchHintFavorite">Поиск в избранном</string>
+</resources>
