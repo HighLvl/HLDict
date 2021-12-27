@@ -50,10 +50,12 @@ class MainFragment(
             if (bottomNavigationView.selectedItemId != section.menuItemId) {
                 bottomNavigationView.selectedItemId = section.menuItemId
             }
+            navigator.setRoute(route)
+        }
+
+        viewModel.currentRoute.observe(viewLifecycleOwner) {(_, route) ->
             bottomNavigationView.isVisible =
                 !(route is MainRoute.Search || route is MainRoute.FavoriteSearch)
-
-            navigator.setRoute(route)
         }
 
     }

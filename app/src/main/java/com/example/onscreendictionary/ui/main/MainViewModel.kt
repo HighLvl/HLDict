@@ -1,5 +1,7 @@
 package com.example.onscreendictionary.ui.main
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.example.onscreendictionary.di.main.MainScope
 import com.example.onscreendictionary.domain.data.WordDefinitionId
 import com.example.onscreendictionary.ui.base.BaseViewModel
@@ -19,8 +21,14 @@ class MainViewModel @Inject constructor(
         //MainBottomSection.Reminder to mutableListOf(MainRoute.Reminder),
         MainBottomSection.Favorites to mutableListOf(MainRoute.FavoriteList())
     )
+
+    //for navigation only
     val section: SingleLiveEvent<Pair<MainBottomSection, MainRoute>> =
         SingleLiveEvent(MainBottomSection.Search to MainRoute.WordList())
+
+    private val _currentRoute: MutableLiveData<Pair<MainBottomSection, MainRoute>> =
+        MutableLiveData(section.value)
+    val currentRoute: LiveData<Pair<MainBottomSection, MainRoute>> = _currentRoute
 
     fun search(query: String) {
         addRoute(MainBottomSection.Search, MainRoute.Search(query))
@@ -61,6 +69,7 @@ class MainViewModel @Inject constructor(
     private fun updateSectionRoute(section: MainBottomSection) {
         val route = sections.getValue(section).last()
         this.section.value = section to route
+        _currentRoute.value = this.section.value
     }
 
     private var isCreated = false
@@ -74,6 +83,7 @@ class MainViewModel @Inject constructor(
                 sections.clear()
                 sections.putAll(instanceState.sections)
                 section.value = instanceState.sectionKey to instanceState.sectionValue
+                _currentRoute.value = section.value
             }
             args.query != null -> addRoute(MainBottomSection.Search, MainRoute.Search(args.query))
         }
